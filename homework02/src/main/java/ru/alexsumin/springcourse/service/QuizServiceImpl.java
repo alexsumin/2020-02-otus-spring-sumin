@@ -6,6 +6,7 @@ import ru.alexsumin.springcourse.domain.QuizQuestion;
 import ru.alexsumin.springcourse.domain.Result;
 import ru.alexsumin.springcourse.domain.Student;
 import ru.alexsumin.springcourse.repository.QuestionRepository;
+import ru.alexsumin.springcourse.util.InputHelper;
 import ru.alexsumin.springcourse.view.View;
 
 import java.util.*;
@@ -53,7 +54,7 @@ public class QuizServiceImpl implements QuizService {
     }
 
     private Consumer<QuizQuestion> showVariantAndCountCorrect(Result result) {
-        return question -> tryParseInt(view.askQuestion(question))
+        return question -> InputHelper.tryParseInt(view.askQuestion(question))
                 .ifPresent(i -> {
                     if (i == question.getCorrectNumber()) {
                         result.incrementCorrect();
@@ -62,13 +63,5 @@ public class QuizServiceImpl implements QuizService {
                         view.showWrongAnswer();
                     }
                 });
-    }
-
-    private Optional<Integer> tryParseInt(String input) {
-        try {
-            return Optional.of(Integer.parseInt(input));
-        } catch (NumberFormatException e) {
-            return Optional.empty();
-        }
     }
 }

@@ -2,8 +2,8 @@ package ru.alexsumin.springcourse.repository;
 
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBeanBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
-import ru.alexsumin.springcourse.components.LocalizationProvider;
 import ru.alexsumin.springcourse.components.QuestionMapper;
 import ru.alexsumin.springcourse.domain.Question;
 import ru.alexsumin.springcourse.domain.QuizQuestion;
@@ -20,11 +20,11 @@ import java.util.stream.Collectors;
 
 @Repository
 public class FileQuestionRepository implements QuestionRepository {
-    private final LocalizationProvider provider;
+    private final String filePath;
     private final QuestionMapper mapper;
 
-    public FileQuestionRepository(LocalizationProvider provider, QuestionMapper mapper) {
-        this.provider = provider;
+    public FileQuestionRepository(@Value("${file.path}") String filePath, QuestionMapper mapper) {
+        this.filePath = filePath;
         this.mapper = mapper;
     }
 
@@ -36,7 +36,6 @@ public class FileQuestionRepository implements QuestionRepository {
     }
 
     private Path getFilePath() throws URISyntaxException, IOException {
-        String filePath = provider.getLocalized("file.path");
         URI uri = Objects.requireNonNull(getClass()
                 .getClassLoader()
                 .getResource(filePath))
