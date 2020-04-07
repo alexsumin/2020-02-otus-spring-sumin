@@ -41,6 +41,6 @@ public class GenreDaoImpl implements GenreDao {
     public Optional<Genre> findByName(String name) {
         return jdbc.query("select * from genres where name=:name",
                 Map.of("name", name),
-                rs -> rs.next() ? Optional.of(genreMapper.mapRow(rs, 1)) : Optional.empty());
+                rs -> rs.next() ? Optional.ofNullable(genreMapper.mapRow(rs, 1)) : Optional.empty());
     }
 }

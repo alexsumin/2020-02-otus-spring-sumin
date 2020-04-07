@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import ru.alexsumin.springcourse.dao.mapper.AuthorMapper;
 import ru.alexsumin.springcourse.domain.Author;
 
 import java.util.List;
@@ -20,8 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Dao для работы с авторами")
 @ExtendWith(SpringExtension.class)
 @JdbcTest
-@Import(AuthorDaoImpl.class)
-@ComponentScan
+@Import({AuthorDaoImpl.class, AuthorMapper.class})
 class AuthorDaoImplTest {
     @Autowired
     AuthorDao authorDao;
@@ -48,7 +47,6 @@ class AuthorDaoImplTest {
     }
 
     @DisplayName("Сохранение автора Author в бд")
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     @Test
     void saveSuccessTest() {
         var genre = Author.builder()

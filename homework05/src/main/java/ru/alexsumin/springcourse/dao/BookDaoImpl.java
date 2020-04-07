@@ -53,7 +53,7 @@ public class BookDaoImpl implements BookDao {
                 jdbc.query(query, Map.of("id", id), resultSet -> {
                     final int i = 0;
                     Book book = null;
-                    while (resultSet.next()) {
+                    if (resultSet.next()) {
                         book = bookMapper.mapRow(resultSet, i);
                         if (book == null) return null;
                         Author author = authorMapper.mapRow(resultSet, i);
@@ -105,12 +105,12 @@ public class BookDaoImpl implements BookDao {
                 .addValue("author_id", book.getAuthor().getId())
                 .addValue("genre_id", book.getGenre().getId());
         jdbc.update("update books " +
-                        "set title = :title, " +
-                        "published=:published, " +
-                        "author_id=:author_id, " +
-                        "genre_id=:genre_id " +
-                        "where " +
-                        "book_id = :book_id", params);
+                "set title = :title, " +
+                "published=:published, " +
+                "author_id=:author_id, " +
+                "genre_id=:genre_id " +
+                "where " +
+                "book_id = :book_id", params);
         return book;
 
     }

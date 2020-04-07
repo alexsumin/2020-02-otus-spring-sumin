@@ -110,8 +110,7 @@ class BookDaoImplTest {
         assertEquals(4, books.size());
     }
 
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
-    @DisplayName("Нахождение всех книг")
+    @DisplayName("Удаление книги и попытка найти по id")
     @Test
     void deleteByIdTest() {
         long idToDelete = 1L;

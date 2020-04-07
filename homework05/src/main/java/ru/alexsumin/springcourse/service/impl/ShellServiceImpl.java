@@ -68,7 +68,7 @@ public class ShellServiceImpl implements ShellService {
                              @ShellOption({"title"}) String title,
                              @ShellOption({"published"}) String published,
                              @ShellOption({"author"}) String author,
-                             @ShellOption({"genres"}) String genre) {
+                             @ShellOption({"genre"}) String genre) {
         return libraryService.updateBook(id, title, published, author, genre);
     }
 }

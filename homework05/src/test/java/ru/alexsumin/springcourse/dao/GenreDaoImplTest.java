@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import ru.alexsumin.springcourse.dao.mapper.GenreMapper;
 import ru.alexsumin.springcourse.domain.Genre;
 
 import java.util.List;
@@ -19,8 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Dao для работы с жанрами")
 @ExtendWith(SpringExtension.class)
 @JdbcTest
-@Import(GenreDaoImpl.class)
-@ComponentScan
+@Import({GenreDaoImpl.class, GenreMapper.class})
 class GenreDaoImplTest {
 
     @Autowired
@@ -48,7 +47,6 @@ class GenreDaoImplTest {
     }
 
     @DisplayName("Сохранение жанра Genre в бд")
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     @Test
     void saveSuccessTest() {
         var genre = Genre.builder()

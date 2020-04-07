@@ -41,6 +41,6 @@ public class AuthorDaoImpl implements AuthorDao {
     public Optional<Author> findByName(String name) {
         return jdbc.query("select * from authors where name=:name",
                 Map.of("name", name),
-                rs -> rs.next() ? Optional.of(authorMapper.mapRow(rs, 1)) : Optional.empty());
+                rs -> rs.next() ? Optional.ofNullable(authorMapper.mapRow(rs, 1)) : Optional.empty());
     }
 }
