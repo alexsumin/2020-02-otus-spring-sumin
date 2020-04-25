@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    initialization-mode: always
+  liquibase:
+    change-log: classpath:db/liquibase-changelog.yaml
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
