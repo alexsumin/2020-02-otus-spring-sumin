@@ -1,0 +1,11 @@
+spring:
+  messages:
+    basename: messages, i18n.messages
+
+quiz:
+  success:
+    percentage: 80
+
+app:
+  locale: en_US
+  filepath: csv/questions_${app.locale}.csv
