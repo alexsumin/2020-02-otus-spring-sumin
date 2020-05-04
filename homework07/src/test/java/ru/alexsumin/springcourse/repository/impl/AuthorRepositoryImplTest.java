@@ -6,14 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.context.annotation.Import;
 import ru.alexsumin.springcourse.domain.Author;
 import ru.alexsumin.springcourse.repository.AuthorRepository;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Репозиторий для работы с авторами")
 @DataJpaTest
@@ -41,7 +39,7 @@ class AuthorRepositoryImplTest {
     @Test
     void findAllTest() {
         val authors = repository.findAll();
-        assertEquals(3, authors.size());
+        assertFalse(authors.isEmpty());
     }
 
     @DisplayName("Поиск автора по имени")

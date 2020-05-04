@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.context.annotation.Import;
 import ru.alexsumin.springcourse.domain.Book;
 import ru.alexsumin.springcourse.domain.Comment;
 import ru.alexsumin.springcourse.repository.CommentRepository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @DisplayName("Репозиторий для работы с комментариями")
 @DataJpaTest
@@ -50,6 +50,6 @@ class CommentRepositoryImplTest {
     @Test
     void commentsOfBookTest() {
         val comments = repository.findAllByBookId(3L);
-        assertEquals(1, comments.size());
+        assertFalse(comments.isEmpty());
     }
 }

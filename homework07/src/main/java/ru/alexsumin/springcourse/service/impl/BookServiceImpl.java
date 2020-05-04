@@ -36,6 +36,7 @@ public class BookServiceImpl implements BookService {
         return bookRepository.save(book);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Book> findAll() {
         return bookRepository.findAll();
@@ -45,7 +46,6 @@ public class BookServiceImpl implements BookService {
     public void deleteById(Long id) {
         bookRepository.deleteById(id);
     }
-
 
     private Author findOrCreate(Author author) {
         if (author == null) return null;

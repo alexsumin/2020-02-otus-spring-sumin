@@ -24,11 +24,13 @@ public class GenreServiceImpl implements GenreService {
         return repository.save(genre);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Optional<Genre> findByName(String name) {
         return repository.findByName(name);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Genre> findAll() {
         return repository.findAll();

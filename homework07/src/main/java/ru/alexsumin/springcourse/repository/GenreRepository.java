@@ -1,15 +1,10 @@
 package ru.alexsumin.springcourse.repository;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import ru.alexsumin.springcourse.domain.Genre;
 
-import java.util.List;
 import java.util.Optional;
 
-@Repository
-public interface GenreRepository extends CrudRepository<Genre, Long> {
-    Genre save(Genre genre);
-    List<Genre> findAll();
+public interface GenreRepository extends JpaRepository<Genre, Long> {
     Optional<Genre> findByName(String name);
 }

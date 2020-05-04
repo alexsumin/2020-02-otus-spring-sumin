@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.context.annotation.Import;
 import ru.alexsumin.springcourse.domain.Genre;
 import ru.alexsumin.springcourse.repository.GenreRepository;
 
@@ -14,6 +13,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @DisplayName("Репозиторий для работы с жанрами")
 @DataJpaTest
@@ -41,7 +41,7 @@ class GenreRepositoryImplTest {
     @Test
     void findAllTest() {
         val authors = repository.findAll();
-        assertEquals(2, authors.size());
+        assertFalse(authors.isEmpty());
     }
 
     @DisplayName("Найти жанр по имени")

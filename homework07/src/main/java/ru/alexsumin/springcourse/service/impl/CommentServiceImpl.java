@@ -1,6 +1,8 @@
 package ru.alexsumin.springcourse.service.impl;
 
-import lombok.AllArgsConstructor;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.alexsumin.springcourse.domain.Comment;
@@ -10,10 +12,11 @@ import ru.alexsumin.springcourse.service.CommentService;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CommentServiceImpl implements CommentService {
 
-    private final CommentRepository repository;
+    CommentRepository repository;
 
     @Transactional
     @Override
@@ -21,6 +24,7 @@ public class CommentServiceImpl implements CommentService {
         return repository.save(comment);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Comment> findAll() {
         return repository.findAll();
