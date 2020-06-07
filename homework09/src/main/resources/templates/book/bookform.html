@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Book Form</title>
+
+    <script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"></script>
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="container" style="margin-top: 20px">
+
+    <div class="card">
+        <div class="card-header">
+            <h1>Library</h1>
+        </div>
+        <div class="container">
+            <h3 style="margin-top: 10px">Enter book information</h3>
+            <form novalidate th:object="${book}" th:action="@{/book/}" method="post">
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                    <p>Please Correct Errors Below</p>
+                </div>
+                <input type="hidden" th:field="*{id}"/>
+                <div class="form-group">
+                    <label for="utitle">Title:</label>
+                    <input type="text" class="form-control" id="utitle" placeholder="Enter title" name="utitle"
+                           th:field="*{title}" th:errorclass="has-error" required>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <input type="hidden" th:field="*{author.id}"/>
+                <div class="form-group">
+                    <label for="uauthor">Author:</label>
+                    <input type="text" class="form-control" id="uauthor" placeholder="Enter author" name="uauthor"
+                           required th:field="*{author.name}" th:errorclass="has-error">
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <input type="hidden" th:field="*{genre.id}"/>
+                <div class="form-group">
+                    <label for="ugenre">Genre:</label>
+                    <input type="text" class="form-control" id="ugenre" placeholder="Enter genre" name="ugenre"
+                           required th:field="*{genre.name}" th:errorclass="has-error">
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+
+                </div>
+                <div class="form-group">
+                    <label for="ugenre">Published:</label>
+                    <input type="text" class="form-control" id="upublished" placeholder="Enter published date"
+                           name="upublished"
+                           required th:field="*{published}" th:errorclass="has-error">
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-bottom: 10px">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    // Disable form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Get the forms we want to add validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+</body>
+</html>
