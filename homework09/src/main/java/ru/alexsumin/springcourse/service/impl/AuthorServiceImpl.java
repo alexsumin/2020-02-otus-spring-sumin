@@ -25,7 +25,6 @@ public class AuthorServiceImpl implements AuthorService {
         return repository.save(author);
     }
 
-    @Transactional(readOnly = true)
     @Override
     public Optional<Author> findByName(String name) {
         return repository.findByName(name);
