@@ -1,0 +1,10 @@
+spring:
+  data:
+    mongodb:
+      database: library
+      host: localhost
+      port: 0
+      authentication-database: none
+logging:
+  level:
+    root: INFO
