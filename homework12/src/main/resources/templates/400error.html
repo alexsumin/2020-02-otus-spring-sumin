@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>400 Bad Request</title>
+
+    <script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"></script>
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="container" style="margin-top: 20px">
+    <div class="card">
+        <div class="card-header">
+            <h1>400 Bad Request</h1>
+        </div>
+        <div class="card-body">
+            <p th:text="${exception.getMessage()}"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
