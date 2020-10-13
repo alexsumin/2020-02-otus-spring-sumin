@@ -1,0 +1,30 @@
+spring:
+  batch:
+    job:
+      enabled: false
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    initialization-mode: always
+    jpa:
+      generate-ddl: false
+      show-sql: true
+      hibernate:
+        ddl-auto: none
+      properties:
+        hibernate:
+          format_sql: true
+  liquibase:
+    change-log: classpath:db/liquibase-changelog.yaml
+
+  data:
+    mongodb:
+      database: library
+      host: localhost
+      port: 27017
+      authentication-database: none
+
+logging:
+  level:
+    ROOT: INFO
+
