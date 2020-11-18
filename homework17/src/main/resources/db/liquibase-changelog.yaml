@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: 01
+      author: alexsumin
+      failOnError: true
+      validCheckSum: ANY
+      changes:
+        - sqlFile: { path: changelog/01.create_genres_authors_books_tables.sql, relativeToChangelogFile: true }
+  - changeSet:
+      id: 02
+      author: alexsumin
+      failOnError: true
+      validCheckSum: ANY
+      changes:
+        - sqlFile: {path: changelog/02.create_comments_table.sql, relativeToChangelogFile: true }
+  - changeSet:
+      id: 03
+      author: alexsumin
+      failOnError: true
+      validCheckSum: ANY
+      changes:
+        - sqlFile: { path: changelog/03.insert_initial_data.sql, relativeToChangelogFile: true }
