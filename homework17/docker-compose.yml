@@ -1,0 +1,28 @@
+version: "3.0"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
+    ports:
+      - "8042:8042"
+    environment:
+      - DATABASE_URL=jdbc:postgresql://postgres:5432/database
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
+      - WAIT_FOR=postgres:5432
+    networks:
+      - nw
+  postgres:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=database
+    networks:
+      - nw
+networks:
+  nw:
