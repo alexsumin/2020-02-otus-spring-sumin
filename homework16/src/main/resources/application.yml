@@ -1,0 +1,46 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    initialization-mode: always
+
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql : true
+
+  liquibase:
+    change-log: classpath:db/liquibase-changelog.yaml
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+  file:
+    name: "./logs/application.log"
+    max-history: 10
+    max-size: 1000KB
+  pattern:
+    file: "%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n"
+
+
+server:
+  port: 8042
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,logfile
+  endpoint:
+    health:
+      show-details: always
+    logfile:
+      enabled: true
+  health:
+    defaults:
+      enabled: true
+
