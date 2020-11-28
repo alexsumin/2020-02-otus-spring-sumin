@@ -1,0 +1,25 @@
+spring:
+  batch:
+    job:
+      enabled: false
+  shell:
+    interactive:
+      enabled: false
+  data:
+    mongodb:
+      uri: mongodb://localhost
+      port: 0
+      database: library
+  datasource:
+    url: jdbc:h2:mem:testdb
+    initialization-mode: always
+  liquibase:
+    change-log: classpath:db/liquibase-changelog.yaml
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+logging:
+  level:
+    root: info
